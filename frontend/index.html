@@ -1,0 +1,63 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Before You Send</title>
+<meta name="color-scheme" content="light dark">
+<link rel="stylesheet" href="styles.css">
+</head>
+<body>
+<div class="app">
+  <header class="top">
+    <h1>Before You Send <span aria-hidden="true">✉️</span></h1>
+    <p class="sub">Check the tone of your message before it lands.</p>
+  </header>
+
+  <div id="banner" class="banner" role="alert" hidden>Maybe sleep on it? 😬</div>
+
+  <main class="grid">
+    <section class="editor">
+      <label for="msg" class="sr">Your message</label>
+      <textarea id="msg" placeholder="Type or paste your message here…" autofocus spellcheck="true"></textarea>
+      <div class="bar">
+        <span id="lang" class="lang" hidden><span id="langFlag"></span> <span id="langName"></span></span>
+        <span id="count" class="muted">0 chars</span>
+        <button id="send" class="send" type="button">Copy &amp; Send</button>
+      </div>
+    </section>
+
+    <aside class="cards" aria-live="polite">
+      <div id="status" class="status" hidden></div>
+
+      <article class="card" id="toneCard">
+        <h2>Tone</h2>
+        <div class="pillrow">
+          <span id="pill" class="pill" data-tone="neutral">neutral</span>
+          <span id="conf" class="muted">–</span>
+        </div>
+        <ul id="bars" class="bars"></ul>
+      </article>
+
+      <article class="card">
+        <h2>Formality <span id="formVal" class="muted">–</span></h2>
+        <div class="slider" role="img" aria-label="Formality level">
+          <div class="track"><div id="formDot" class="dot"></div></div>
+          <div class="ticks"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span></div>
+          <div class="ends"><span>Casual</span><span>Formal</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <h2>Fight risk <span id="riskVal" class="muted">0%</span></h2>
+        <div class="thermo" role="img" aria-label="Fight risk">
+          <div class="tube"><div id="mercury" class="mercury"></div></div>
+          <div class="bulb" id="bulb"></div>
+        </div>
+      </article>
+    </aside>
+  </main>
+</div>
+<script src="app.js"></script>
+</body>
+</html>

@@ -1,0 +1,6 @@
+fastapi
+uvicorn
+pytest
+httpx
+# Optional real model (large download); without it the app falls back to mock:
+# laya  -> see requirements-laya.txt

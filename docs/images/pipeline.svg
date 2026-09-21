@@ -1,0 +1,55 @@
+<svg viewBox="-16 -16 892 282" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Pipeline: browser sends text to FastAPI, which calls the Laya classification layer, and the three typed answers return to the gauges"><style>
+text{font-family:Helvetica,Arial,sans-serif;fill:#14202B}
+.mono{font-family:Menlo,Consolas,monospace}
+.dim{fill:#54657A}
+.box{fill:#FFFFFF;stroke:#CBD5DE;stroke-width:1.2}
+.lbox{fill:#D6ECEE;stroke:#0F6E78;stroke-width:1.6}
+.zone{fill:none;stroke:#0F6E78;stroke-width:1.4;stroke-dasharray:5 4}
+.arr{stroke:#14202B;stroke-width:1.4;fill:none}
+.arrl{stroke:#0F6E78;stroke-width:1.8;fill:none}
+.tok{fill:#E9EEF2;stroke:#CBD5DE;stroke-width:1}
+.lt{fill:#0A4D55;font-weight:bold}
+</style><rect x="-16" y="-16" width="892" height="282" rx="10" fill="#F7F9FB"/>
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="#14202B"/></marker>
+        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="#0F6E78"/></marker>
+      </defs>
+      <rect class="box" x="10" y="80" width="120" height="70" rx="8"/>
+      <text x="70" y="108" text-anchor="middle" font-size="13" font-weight="600">Browser</text>
+      <text x="70" y="127" text-anchor="middle" font-size="11" class="dim">your typing</text>
+      <text x="70" y="141" text-anchor="middle" font-size="11" class="dim mono">wait 150 ms</text>
+
+      <rect class="box" x="190" y="80" width="130" height="70" rx="8"/>
+      <text x="255" y="108" text-anchor="middle" font-size="13" font-weight="600">FastAPI</text>
+      <text x="255" y="127" text-anchor="middle" font-size="11" class="dim mono">POST /analyze</text>
+      <text x="255" y="141" text-anchor="middle" font-size="11" class="dim">one request at a time</text>
+
+      <rect class="zone" x="360" y="24" width="360" height="200" rx="14"/>
+      <text x="376" y="46" font-size="11" class="mono lt">CLASSIFICATION LAYER</text>
+
+      <rect class="lbox" x="378" y="66" width="150" height="70" rx="8"/>
+      <text x="453" y="94" text-anchor="middle" font-size="13" font-weight="600">Our questions</text>
+      <text x="453" y="112" text-anchor="middle" font-size="11" class="dim">tone · formality · risk</text>
+      <text x="453" y="126" text-anchor="middle" font-size="11" class="dim mono">laya_engine.py</text>
+
+      <rect class="lbox" x="552" y="66" width="150" height="70" rx="8"/>
+      <text x="627" y="94" text-anchor="middle" font-size="13" font-weight="600">Laya Router</text>
+      <text x="627" y="112" text-anchor="middle" font-size="11" class="dim">detects language,</text>
+      <text x="627" y="126" text-anchor="middle" font-size="11" class="dim">picks a model</text>
+
+      <rect class="lbox" x="465" y="158" width="150" height="52" rx="8"/>
+      <text x="540" y="180" text-anchor="middle" font-size="13" font-weight="600">One forward pass</text>
+      <text x="540" y="197" text-anchor="middle" font-size="11" class="dim">no text generated</text>
+
+      <rect class="box" x="750" y="80" width="100" height="70" rx="8"/>
+      <text x="800" y="108" text-anchor="middle" font-size="13" font-weight="600">Gauges</text>
+      <text x="800" y="127" text-anchor="middle" font-size="11" class="dim">pill, slider,</text>
+      <text x="800" y="141" text-anchor="middle" font-size="11" class="dim">thermometer</text>
+
+      <line class="arr" x1="130" y1="115" x2="188" y2="115" marker-end="url(#a1)"/>
+      <line class="arr" x1="320" y1="115" x2="376" y2="115" marker-end="url(#a1)"/>
+      <line class="arrl" x1="528" y1="101" x2="550" y2="101" marker-end="url(#a2)"/>
+      <path class="arrl" d="M627 136 L627 148 L560 148 L560 156" marker-end="url(#a2)"/>
+      <path class="arrl" d="M615 184 L800 184 L800 152" marker-end="url(#a2)"/>
+      <text x="782" y="204" text-anchor="middle" font-size="10" class="dim mono">3 typed answers</text>
+    </svg>

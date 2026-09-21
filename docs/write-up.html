@@ -1,0 +1,378 @@
+<meta charset="utf-8">
+<title>Before You Send, Explained</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700&family=IBM+Plex+Sans:wght@400;500;600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#F2F5F7; --surface:#FFFFFF; --surface2:#E9EEF2; --ink:#14202B; --muted:#54657A; --line:#CBD5DE;
+  --laya:#0F6E78; --laya-soft:#D6ECEE; --laya-ink:#0A4D55;
+  --friendly:#2E8B57; --neutral:#6C7C90; --pa:#C98A1B; --angry:#D2452F; --anxious:#6B63C9;
+  --code-bg:#101A24; --code-ink:#DCE6EE; --code-dim:#7F93A6; --code-key:#7FD4DC; --code-str:#E9C77B;
+  --font-display:"Bricolage Grotesque","Avenir Next",system-ui,sans-serif;
+  --font-body:"IBM Plex Sans",system-ui,-apple-system,sans-serif;
+  --font-mono:"IBM Plex Mono",ui-monospace,Menlo,monospace;
+}
+@media (prefers-color-scheme: dark){
+  :root:not([data-theme="light"]){
+    --bg:#0D1419; --surface:#141E26; --surface2:#1B2732; --ink:#E6EDF3; --muted:#93A4B5; --line:#2A3945;
+    --laya:#4FC3CF; --laya-soft:#12363B; --laya-ink:#9FE3EA;
+    --friendly:#4CB783; --neutral:#8798AC; --pa:#E0A33A; --angry:#EE6A55; --anxious:#9A93EE;
+    --code-bg:#0A1016; --code-ink:#DCE6EE; --code-dim:#6F8497; --code-key:#7FD4DC; --code-str:#E9C77B;
+  }
+}
+:root[data-theme="dark"]{
+  --bg:#0D1419; --surface:#141E26; --surface2:#1B2732; --ink:#E6EDF3; --muted:#93A4B5; --line:#2A3945;
+  --laya:#4FC3CF; --laya-soft:#12363B; --laya-ink:#9FE3EA;
+  --friendly:#4CB783; --neutral:#8798AC; --pa:#E0A33A; --angry:#EE6A55; --anxious:#9A93EE;
+  --code-bg:#0A1016; --code-ink:#DCE6EE; --code-dim:#6F8497; --code-key:#7FD4DC; --code-str:#E9C77B;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--ink);font-family:var(--font-body);font-size:16px;line-height:1.6;
+  padding-inline:20px;padding-block:40px 72px}
+.wrap{max-width:860px;margin-inline:auto;display:flex;flex-direction:column;gap:64px}
+h1,h2,h3{font-family:var(--font-display);line-height:1.12;text-wrap:balance;margin:0;font-weight:700;letter-spacing:-.01em}
+h1{font-size:clamp(2.2rem,6vw,3.4rem)}
+h2{font-size:clamp(1.55rem,3.6vw,2.05rem)}
+h3{font-size:1.15rem;font-weight:500}
+p{margin:0;max-width:66ch}
+.eyebrow{font-family:var(--font-mono);font-size:.74rem;letter-spacing:.09em;text-transform:uppercase;color:var(--muted)}
+.lead{font-size:1.2rem;color:var(--ink)}
+.muted{color:var(--muted)}
+section{display:flex;flex-direction:column;gap:20px}
+code{font-family:var(--font-mono);font-size:.88em;background:var(--surface2);padding:.1em .38em;border-radius:4px}
+.hero{display:flex;flex-direction:column;gap:18px}
+.hero .try{display:grid;grid-template-columns:1fr 1fr;gap:16px;margin-top:8px}
+@media (max-width:640px){.hero .try{grid-template-columns:1fr}}
+.msg{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;font-size:1.02rem}
+.msg small{display:block;font-family:var(--font-mono);font-size:.72rem;letter-spacing:.06em;text-transform:uppercase;color:var(--muted);margin-bottom:8px}
+.gauges{display:flex;flex-direction:column;gap:12px;background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px}
+.g{display:grid;grid-template-columns:82px 1fr auto;gap:10px;align-items:center;font-size:.9rem}
+.g b{font-weight:500;color:var(--muted);font-size:.78rem;font-family:var(--font-mono);letter-spacing:.04em;text-transform:uppercase}
+.track{height:10px;background:var(--surface2);border-radius:5px;overflow:hidden}
+.fill{height:100%;border-radius:5px}
+.pill{display:inline-block;padding:2px 12px;border-radius:99px;color:#fff;font-weight:600;font-size:.85rem}
+.tone-friendly{background:var(--friendly)}.tone-neutral{background:var(--neutral)}.tone-pa{background:var(--pa)}.tone-angry{background:var(--angry)}.tone-anxious{background:var(--anxious)}
+:root[data-theme="dark"] .pill{color:#0D1419}
+@media (prefers-color-scheme: dark){:root:not([data-theme="light"]) .pill{color:#0D1419}}
+.figure{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:18px}
+.figure figcaption{font-size:.88rem;color:var(--muted);margin-top:12px;max-width:70ch}
+.scroll{overflow-x:auto}
+svg{display:block;max-width:100%;height:auto}
+svg text{font-family:var(--font-body);fill:var(--ink)}
+svg .mono{font-family:var(--font-mono)}
+svg .dim{fill:var(--muted)}
+svg .box{fill:var(--surface);stroke:var(--line);stroke-width:1.2}
+svg .lbox{fill:var(--laya-soft);stroke:var(--laya);stroke-width:1.6}
+svg .zone{fill:none;stroke:var(--laya);stroke-width:1.4;stroke-dasharray:5 4}
+svg .arr{stroke:var(--ink);stroke-width:1.4;fill:none}
+svg .arrl{stroke:var(--laya);stroke-width:1.8;fill:none}
+svg .tok{fill:var(--surface2);stroke:var(--line);stroke-width:1}
+svg .lt{fill:var(--laya-ink);font-weight:600}
+.focus{border:1.5px solid var(--laya);border-radius:14px;padding:clamp(18px,4vw,34px);background:linear-gradient(180deg,var(--laya-soft),transparent 320px);display:flex;flex-direction:column;gap:28px}
+.focus .tag{align-self:flex-start;background:var(--laya);color:var(--bg);font-family:var(--font-mono);font-size:.72rem;letter-spacing:.09em;text-transform:uppercase;padding:3px 10px;border-radius:4px}
+.sub{display:flex;flex-direction:column;gap:14px}
+pre{margin:0;background:var(--code-bg);color:var(--code-ink);border-radius:8px;padding:16px 18px;font-family:var(--font-mono);font-size:.82rem;line-height:1.65;overflow-x:auto}
+pre .k{color:var(--code-key)}pre .s{color:var(--code-str)}pre .c{color:var(--code-dim)}
+table{width:100%;border-collapse:collapse;font-size:.9rem}
+th,td{text-align:left;padding:10px 12px;border-bottom:1px solid var(--line);vertical-align:top}
+th{font-family:var(--font-mono);font-size:.72rem;font-weight:500;letter-spacing:.07em;text-transform:uppercase;color:var(--muted)}
+td.n,th.n{font-variant-numeric:tabular-nums;white-space:nowrap}
+.tw{overflow-x:auto;background:var(--surface);border:1px solid var(--line);border-radius:10px}
+.tw table{min-width:560px}
+.tw tr:last-child td{border-bottom:0}
+.probs{display:flex;flex-direction:column;gap:8px}
+.pr{display:grid;grid-template-columns:130px 1fr 52px;gap:10px;align-items:center;font-size:.9rem}
+.pr span.v{font-variant-numeric:tabular-nums;text-align:right;color:var(--muted);font-family:var(--font-mono);font-size:.82rem}
+.pr.top .lab{font-weight:600}
+@media (max-width:480px){.pr{grid-template-columns:104px 1fr 46px}.g{grid-template-columns:70px 1fr auto}}
+.stack{display:flex;height:14px;border-radius:4px;overflow:hidden;min-width:180px}
+.stack i{display:block;height:100%}
+.legend{display:flex;flex-wrap:wrap;gap:6px 16px;font-size:.8rem;color:var(--muted)}
+.legend span::before{content:"";display:inline-block;width:10px;height:10px;border-radius:2px;margin-right:6px;background:var(--c)}
+.cols{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:16px}
+.card{background:var(--surface);border:1px solid var(--line);border-radius:10px;padding:16px;display:flex;flex-direction:column;gap:8px}
+.card h3{font-size:1rem}
+.card p{font-size:.92rem;color:var(--muted)}
+.ok{color:var(--friendly);font-weight:600}.warn{color:var(--pa);font-weight:600}.bad{color:var(--angry);font-weight:600}
+.list{display:flex;flex-direction:column;gap:10px;padding:0;margin:0;list-style:none}
+.list li{display:grid;grid-template-columns:auto 1fr;gap:12px;font-size:.96rem}
+.list li b{font-family:var(--font-mono);font-size:.75rem;letter-spacing:.05em;text-transform:uppercase;padding-top:3px;min-width:74px}
+.callout{border-left:3px solid var(--pa);background:var(--surface);padding:14px 18px;border-radius:0 8px 8px 0;font-size:.95rem}
+footer{font-size:.85rem;color:var(--muted)}
+@media (prefers-reduced-motion: no-preference){.fill{transition:width .4s ease}}
+</style>
+
+<div class="wrap">
+
+<header class="hero">
+  <div class="eyebrow">Project write-up · Laya + FastAPI</div>
+  <h1>Before You Send</h1>
+  <p class="lead">A text box that tells you how your message will land, while you type it. Before the fight, not after.</p>
+  <div class="try">
+    <div class="msg"><small>You type</small>“You never listen. This is the last time I'm asking, idiot.”</div>
+    <div class="gauges" aria-label="Example result from the real model">
+      <div class="g"><b>Tone</b><span><span class="pill tone-angry">angry</span></span><span class="muted">92%</span></div>
+      <div class="g"><b>Formality</b><div class="track"><div class="fill" style="width:23%;background:var(--laya)"></div></div><span class="muted">1.9 / 5</span></div>
+      <div class="g"><b>Fight risk</b><div class="track"><div class="fill" style="width:71%;background:var(--angry)"></div></div><span class="muted">71%</span></div>
+      <div class="muted" style="font-size:.8rem">Real output from the running app, 66 ms.</div>
+    </div>
+  </div>
+</header>
+
+<section>
+  <h2>How the pieces fit</h2>
+  <p>The browser sends your text to a small Python server. The server hands it to Laya, the model that does the actual judging. The answers come back as three numbers and a label, and the page turns them into gauges. The dashed area is the classification layer.</p>
+  <figure class="figure" style="margin:0">
+    <div class="scroll">
+    <svg viewBox="0 0 860 250" width="860" role="img" aria-label="Pipeline: browser sends text to FastAPI, which calls the Laya classification layer, and the three typed answers return to the gauges" style="min-width:700px">
+      <defs>
+        <marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="currentColor" style="color:var(--ink)"/></marker>
+        <marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="currentColor" style="color:var(--laya)"/></marker>
+      </defs>
+      <rect class="box" x="10" y="80" width="120" height="70" rx="8"/>
+      <text x="70" y="108" text-anchor="middle" font-size="13" font-weight="600">Browser</text>
+      <text x="70" y="127" text-anchor="middle" font-size="11" class="dim">your typing</text>
+      <text x="70" y="141" text-anchor="middle" font-size="11" class="dim mono">wait 150 ms</text>
+
+      <rect class="box" x="190" y="80" width="130" height="70" rx="8"/>
+      <text x="255" y="108" text-anchor="middle" font-size="13" font-weight="600">FastAPI</text>
+      <text x="255" y="127" text-anchor="middle" font-size="11" class="dim mono">POST /analyze</text>
+      <text x="255" y="141" text-anchor="middle" font-size="11" class="dim">one request at a time</text>
+
+      <rect class="zone" x="360" y="24" width="360" height="200" rx="14"/>
+      <text x="376" y="46" font-size="11" class="mono lt">CLASSIFICATION LAYER</text>
+
+      <rect class="lbox" x="378" y="66" width="150" height="70" rx="8"/>
+      <text x="453" y="94" text-anchor="middle" font-size="13" font-weight="600">Our questions</text>
+      <text x="453" y="112" text-anchor="middle" font-size="11" class="dim">tone · formality · risk</text>
+      <text x="453" y="126" text-anchor="middle" font-size="11" class="dim mono">laya_engine.py</text>
+
+      <rect class="lbox" x="552" y="66" width="150" height="70" rx="8"/>
+      <text x="627" y="94" text-anchor="middle" font-size="13" font-weight="600">Laya Router</text>
+      <text x="627" y="112" text-anchor="middle" font-size="11" class="dim">detects language,</text>
+      <text x="627" y="126" text-anchor="middle" font-size="11" class="dim">picks a model</text>
+
+      <rect class="lbox" x="465" y="158" width="150" height="52" rx="8"/>
+      <text x="540" y="180" text-anchor="middle" font-size="13" font-weight="600">One forward pass</text>
+      <text x="540" y="197" text-anchor="middle" font-size="11" class="dim">no text generated</text>
+
+      <rect class="box" x="750" y="80" width="100" height="70" rx="8"/>
+      <text x="800" y="108" text-anchor="middle" font-size="13" font-weight="600">Gauges</text>
+      <text x="800" y="127" text-anchor="middle" font-size="11" class="dim">pill, slider,</text>
+      <text x="800" y="141" text-anchor="middle" font-size="11" class="dim">thermometer</text>
+
+      <line class="arr" x1="130" y1="115" x2="188" y2="115" marker-end="url(#a1)"/>
+      <line class="arr" x1="320" y1="115" x2="376" y2="115" marker-end="url(#a1)"/>
+      <line class="arrl" x1="528" y1="101" x2="550" y2="101" marker-end="url(#a2)"/>
+      <path class="arrl" d="M627 136 L627 148 L560 148 L560 156" marker-end="url(#a2)"/>
+      <path class="arrl" d="M615 184 L800 184 L800 152" marker-end="url(#a2)"/>
+      <text x="782" y="204" text-anchor="middle" font-size="10" class="dim mono">3 typed answers</text>
+    </svg>
+    </div>
+    <figcaption>Only the dashed box makes decisions. Everything else is plumbing that carries text in and numbers out.</figcaption>
+  </figure>
+</section>
+
+<section class="focus">
+  <span class="tag">The important part</span>
+  <div class="sub">
+    <h2>The classification layer: Laya</h2>
+    <p class="lead">Every judgment on screen comes from one function call: <code>router.predict(state, questions)</code>. This section explains what that call actually is.</p>
+  </div>
+
+  <div class="sub">
+    <h3>It classifies. It doesn't write.</h3>
+    <p>Most people would reach for a chat model here: send the message, ask “what's the tone?”, read the reply. Laya works differently. It is a <b>non-autoregressive decision engine</b>: an encoder model (ModernBERT-large, 421M parameters, for English) that reads the whole message and your questions together, then answers all of them in a <b>single forward pass</b>. It never generates a sentence.</p>
+    <figure class="figure" style="margin:0">
+      <div class="scroll">
+      <svg viewBox="0 0 820 268" width="820" role="img" aria-label="A chat model generates tokens one at a time then needs parsing; Laya answers all three questions in one pass with typed outputs" style="min-width:680px">
+        <text x="0" y="18" font-size="12" class="mono dim">CHAT MODEL (what we did not use)</text>
+        <rect class="box" x="0" y="30" width="110" height="52" rx="8"/>
+        <text x="55" y="61" text-anchor="middle" font-size="12">message + prompt</text>
+        <g>
+          <rect class="tok" x="150" y="40" width="54" height="32" rx="5"/><text x="177" y="61" text-anchor="middle" font-size="11" class="mono">The</text>
+          <rect class="tok" x="212" y="40" width="54" height="32" rx="5"/><text x="239" y="61" text-anchor="middle" font-size="11" class="mono">tone</text>
+          <rect class="tok" x="274" y="40" width="54" height="32" rx="5"/><text x="301" y="61" text-anchor="middle" font-size="11" class="mono">is</text>
+          <rect class="tok" x="336" y="40" width="72" height="32" rx="5"/><text x="372" y="61" text-anchor="middle" font-size="11" class="mono">rather</text>
+          <text x="432" y="61" font-size="14" class="dim">…</text>
+        </g>
+        <rect class="box" x="470" y="30" width="140" height="52" rx="8"/>
+        <text x="540" y="52" text-anchor="middle" font-size="12">free text</text>
+        <text x="540" y="69" text-anchor="middle" font-size="11" class="dim">parse it, hope it fits</text>
+        <line class="arr" x1="110" y1="56" x2="146" y2="56" marker-end="url(#a1)"/>
+        <line class="arr" x1="418" y1="56" x2="468" y2="56" marker-end="url(#a1)"/>
+        <text x="640" y="52" font-size="12">many passes, one per token</text>
+        <text x="640" y="70" font-size="12" class="dim">can drift or invent labels</text>
+
+        <line x1="0" y1="112" x2="820" y2="112" stroke="var(--line)" stroke-dasharray="3 5"/>
+
+        <text x="0" y="140" font-size="12" class="mono lt">LAYA (what we used)</text>
+        <rect class="lbox" x="0" y="164" width="110" height="70" rx="8"/>
+        <text x="55" y="190" text-anchor="middle" font-size="12" font-weight="600">message</text>
+        <text x="55" y="208" text-anchor="middle" font-size="11" class="dim">+ 3 questions</text>
+        <text x="55" y="223" text-anchor="middle" font-size="11" class="dim">together</text>
+        <rect class="lbox" x="165" y="172" width="150" height="54" rx="8"/>
+        <text x="240" y="195" text-anchor="middle" font-size="13" font-weight="600">1 forward pass</text>
+        <text x="240" y="212" text-anchor="middle" font-size="11" class="dim mono">~40–110 ms here</text>
+        <line class="arrl" x1="110" y1="199" x2="163" y2="199" marker-end="url(#a2)"/>
+        <rect class="box" x="400" y="146" width="300" height="30" rx="6"/>
+        <text x="412" y="166" font-size="11" class="mono">choice → “angry” + 5 probabilities</text>
+        <rect class="box" x="400" y="184" width="300" height="30" rx="6"/>
+        <text x="412" y="204" font-size="11" class="mono">score  → 1.91 on the formality scale</text>
+        <rect class="box" x="400" y="222" width="300" height="30" rx="6"/>
+        <text x="412" y="242" font-size="11" class="mono">noul   → 0.71 chance of a fight</text>
+        <line class="arrl" x1="315" y1="199" x2="358" y2="199"/>
+        <line class="arrl" x1="358" y1="161" x2="358" y2="237"/>
+        <line class="arrl" x1="358" y1="161" x2="398" y2="161" marker-end="url(#a2)"/>
+        <line class="arrl" x1="358" y1="199" x2="398" y2="199" marker-end="url(#a2)"/>
+        <line class="arrl" x1="358" y1="237" x2="398" y2="237" marker-end="url(#a2)"/>
+        <text x="720" y="199" font-size="11" class="dim">typed, ready</text>
+        <text x="720" y="214" font-size="11" class="dim">for the UI</text>
+      </svg>
+      </div>
+      <figcaption>A chat model produces prose that you then have to parse. Laya produces the answer directly, in the shape you asked for, and can only pick from the options you gave it.</figcaption>
+    </figure>
+  </div>
+
+  <div class="sub">
+    <h3>We ask it three questions</h3>
+    <p>Laya's vocabulary is three kinds of question, called primitives. Each one maps to one control on the page. This is the real definition from <code>backend/laya_engine.py</code>, shortened:</p>
+<pre><span class="k">"tone"</span>: {
+  <span class="k">"type"</span>: <span class="s">"choice"</span>,
+  <span class="k">"instructions"</span>: <span class="s">"Classify the emotional tone of this message."</span>,
+  <span class="k">"criteria"</span>: {
+    <span class="s">"friendly"</span>: <span class="s">"warm, kind, positive"</span>,
+    <span class="s">"passive-aggressive"</span>: <span class="s">"indirectly hostile, sarcastic or icy politeness"</span>,
+    <span class="c">... neutral, angry, anxious</span>
+  }
+},
+<span class="k">"formality"</span>: { <span class="k">"type"</span>: <span class="s">"score"</span>, <span class="k">"criteria"</span>: [<span class="s">"very informal slang"</span>, <span class="c">...</span>, <span class="s">"very formal"</span>] },
+<span class="k">"fight_risk"</span>: { <span class="k">"type"</span>: <span class="s">"noul"</span>,  <span class="k">"instructions"</span>: <span class="s">"Is this message likely to start a fight?"</span> }</pre>
+    <div class="tw"><table>
+      <thead><tr><th>Question</th><th>Primitive</th><th>What Laya returns</th><th>What you see</th></tr></thead>
+      <tbody>
+        <tr><td><b>Tone</b></td><td><code>choice</code></td><td>Top label plus a probability for each of the 5 options</td><td>Colored pill and 5 bars</td></tr>
+        <tr><td><b>Formality</b></td><td><code>score</code></td><td>A position on an ordinal scale (0 to 4)</td><td>Slider, shown as 1 to 5</td></tr>
+        <tr><td><b>Fight risk</b></td><td><code>noul</code></td><td>One calibrated probability, 0 to 1</td><td>Thermometer, and the “sleep on it” banner above 60%</td></tr>
+      </tbody>
+    </table></div>
+  </div>
+
+  <div class="sub">
+    <h3>What one real answer looks like</h3>
+    <p>This is the message that most people would call passive-aggressive. These are the actual probabilities Laya returned, unedited:</p>
+    <div class="msg"><small>Message</small>“Fine. Whatever you want. Not like my opinion matters anyway.”</div>
+    <div class="probs" role="img" aria-label="Tone probabilities: neutral 53, passive-aggressive 24, angry 12, friendly 9, anxious 3 percent">
+      <div class="pr top"><span class="lab">neutral</span><div class="track"><div class="fill" style="width:52.77%;background:var(--neutral)"></div></div><span class="v">52.8%</span></div>
+      <div class="pr"><span class="lab">passive-aggressive</span><div class="track"><div class="fill" style="width:23.71%;background:var(--pa)"></div></div><span class="v">23.7%</span></div>
+      <div class="pr"><span class="lab">angry</span><div class="track"><div class="fill" style="width:11.87%;background:var(--angry)"></div></div><span class="v">11.9%</span></div>
+      <div class="pr"><span class="lab">friendly</span><div class="track"><div class="fill" style="width:8.68%;background:var(--friendly)"></div></div><span class="v">8.7%</span></div>
+      <div class="pr"><span class="lab">anxious</span><div class="track"><div class="fill" style="width:2.97%;background:var(--anxious)"></div></div><span class="v">3.0%</span></div>
+    </div>
+    <p class="muted">Laya picked <b>neutral</b>, which is wrong for this message. But the right answer sits in second place, with double the probability of angry. That is useful to know, and it's why we pass all five probabilities to the page instead of only the winner.</p>
+  </div>
+
+  <div class="sub">
+    <h3>The router picks the model for you</h3>
+    <p>Laya ships as three checkpoints. The <code>Router</code> looks at the script and language of each message (under a millisecond, per the README) and sends it to the right one. English goes to the 421M-parameter English model. Hebrew, Arabic, Hindi and 100+ other languages go to a smaller multilingual model, which is faster. In the app you get this for free: the Hebrew test below took 42 ms.</p>
+    <figure class="figure" style="margin:0">
+      <div class="scroll">
+      <svg viewBox="0 0 700 170" width="700" role="img" aria-label="Router sends English text to laya ModernBERT-large and other languages to laya-multilingual mmBERT-base" style="min-width:560px">
+        <rect class="box" x="0" y="55" width="130" height="60" rx="8"/>
+        <text x="65" y="82" text-anchor="middle" font-size="12" font-weight="600">Your message</text>
+        <text x="65" y="99" text-anchor="middle" font-size="11" class="dim">any language</text>
+        <rect class="lbox" x="200" y="55" width="130" height="60" rx="8"/>
+        <text x="265" y="82" text-anchor="middle" font-size="12" font-weight="600">Router</text>
+        <text x="265" y="99" text-anchor="middle" font-size="11" class="dim">script + language</text>
+        <rect class="box" x="420" y="10" width="280" height="56" rx="8"/>
+        <text x="434" y="33" font-size="12" font-weight="600">laya</text>
+        <text x="434" y="51" font-size="11" class="dim">English · ModernBERT-large · 421M · 512 tokens</text>
+        <rect class="box" x="420" y="104" width="280" height="56" rx="8"/>
+        <text x="434" y="127" font-size="12" font-weight="600">laya-multilingual</text>
+        <text x="434" y="145" font-size="11" class="dim">100+ languages · mmBERT-base · 322M · 1,024 tokens</text>
+        <line class="arr" x1="130" y1="85" x2="198" y2="85" marker-end="url(#a1)"/>
+        <path class="arrl" d="M330 78 L375 78 L375 38 L418 38" marker-end="url(#a2)"/>
+        <path class="arrl" d="M330 92 L375 92 L375 132 L418 132" marker-end="url(#a2)"/>
+      </svg>
+      </div>
+      <figcaption>The app never chooses a model. The router does, per message, and reports its choice in the result.</figcaption>
+    </figure>
+  </div>
+
+  <div class="sub">
+    <h3>The small translation step in between</h3>
+    <p>Laya's raw numbers aren't quite what the page needs, so our wrapper does three small conversions. This is the only logic we wrote around the model:</p>
+    <div class="tw"><table>
+      <thead><tr><th>Laya says</th><th>Wrapper does</th><th>Page gets</th></tr></thead>
+      <tbody>
+        <tr><td><code>probabilities</code> for 5 tones</td><td>Normalizes them to sum to 1, takes the largest as the label</td><td>Label, confidence, 5 bars</td></tr>
+        <tr><td><code>score</code> on a 0 to 4 scale</td><td>Adds 1 and clamps to 1 to 5</td><td>Formality slider</td></tr>
+        <tr><td><code>noul</code> probability</td><td>Clamps to 0 to 1</td><td>Fight-risk thermometer</td></tr>
+      </tbody>
+    </table></div>
+    <p class="muted">A first version of the wrapper ignored the real tone probabilities and made up a spread from the confidence value. Testing against real output caught it, and it's fixed.</p>
+  </div>
+</section>
+
+<section>
+  <h2>What it actually returned</h2>
+  <p>Five messages sent to the running app with real Laya. Each bar is the model's probability split across the five tones.</p>
+  <div class="legend" aria-hidden="true">
+    <span style="--c:var(--friendly)">friendly</span><span style="--c:var(--neutral)">neutral</span><span style="--c:var(--pa)">passive-aggressive</span><span style="--c:var(--angry)">angry</span><span style="--c:var(--anxious)">anxious</span>
+  </div>
+  <div class="tw"><table>
+    <thead><tr><th>Message</th><th>Tone split</th><th class="n">Formality</th><th class="n">Fight risk</th><th class="n">Time</th></tr></thead>
+    <tbody>
+      <tr><td>“Thanks so much, you're amazing! Can't wait to see you.”</td>
+        <td><div class="stack" title="friendly 46, neutral 27, passive-aggressive 16, angry 6, anxious 5"><i style="width:46.39%;background:var(--friendly)"></i><i style="width:26.73%;background:var(--neutral)"></i><i style="width:15.56%;background:var(--pa)"></i><i style="width:6.38%;background:var(--angry)"></i><i style="width:4.94%;background:var(--anxious)"></i></div></td>
+        <td class="n">2.2</td><td class="n">0.5%</td><td class="n">107 ms</td></tr>
+      <tr><td>“You never listen. This is the last time I'm asking, idiot.”</td>
+        <td><div class="stack" title="angry 92"><i style="width:1.1%;background:var(--friendly)"></i><i style="width:1.9%;background:var(--neutral)"></i><i style="width:3.87%;background:var(--pa)"></i><i style="width:92.2%;background:var(--angry)"></i><i style="width:.93%;background:var(--anxious)"></i></div></td>
+        <td class="n">1.9</td><td class="n">71%</td><td class="n">66 ms</td></tr>
+      <tr><td>“Fine. Whatever you want. Not like my opinion matters anyway.”</td>
+        <td><div class="stack" title="neutral 53, passive-aggressive 24"><i style="width:8.68%;background:var(--friendly)"></i><i style="width:52.77%;background:var(--neutral)"></i><i style="width:23.71%;background:var(--pa)"></i><i style="width:11.87%;background:var(--angry)"></i><i style="width:2.97%;background:var(--anxious)"></i></div></td>
+        <td class="n">2.1</td><td class="n">9.6%</td><td class="n">71 ms</td></tr>
+      <tr><td>“Hi, could you send the report by Friday? Thanks.”</td>
+        <td><div class="stack" title="neutral 67"><i style="width:7.93%;background:var(--friendly)"></i><i style="width:67.18%;background:var(--neutral)"></i><i style="width:16.44%;background:var(--pa)"></i><i style="width:4.3%;background:var(--angry)"></i><i style="width:4.15%;background:var(--anxious)"></i></div></td>
+        <td class="n">2.3</td><td class="n">3.6%</td><td class="n">69 ms</td></tr>
+      <tr><td>Hebrew: “Hello, I'd be happy to schedule a meeting tomorrow if that suits you.”</td>
+        <td><div class="stack" title="neutral 69, friendly 25"><i style="width:25.21%;background:var(--friendly)"></i><i style="width:69.22%;background:var(--neutral)"></i><i style="width:2.17%;background:var(--pa)"></i><i style="width:.64%;background:var(--angry)"></i><i style="width:2.76%;background:var(--anxious)"></i></div></td>
+        <td class="n">2.4</td><td class="n">0%</td><td class="n">42 ms</td></tr>
+    </tbody>
+  </table></div>
+</section>
+
+<section>
+  <h2>How it got built</h2>
+  <p>One orchestrator agent wrote the API contract first, then launched three workers in parallel, each owning separate files so they couldn't collide.</p>
+  <div class="cols">
+    <div class="card"><h3>Backend agent</h3><p>FastAPI server, the Laya wrapper, a rule-based mock fallback so the app runs even without the model, and 16 tests.</p></div>
+    <div class="card"><h3>Frontend agent</h3><p>The page itself: textarea, animated tone pill, formality slider, risk thermometer, language badge, light and dark themes.</p></div>
+    <div class="card"><h3>Docs and QA agent</h3><p>README, a one-command launcher, and a smoke test that sends sample messages, including Hebrew.</p></div>
+  </div>
+  <p class="muted">After that we installed the real Laya, compared its output with the wrapper's assumptions, and fixed what didn't match.</p>
+</section>
+
+<section>
+  <h2>What's been checked, and what hasn't</h2>
+  <ul class="list">
+    <li><b class="ok">Verified</b><span>All 16 backend tests pass. The smoke test passes in mock mode. Real Laya loads and answers through the running server, including three requests at once.</span></li>
+    <li><b class="ok">Fixed</b><span>Two real bugs found while testing: the model loaded on the first keystroke and every keystroke raced to load it, and concurrent requests crashed the server with a Mac GPU (Metal) error. It now loads once at startup and runs one request at a time.</span></li>
+    <li><b class="warn">Weak</b><span>Laya's base model misses subtle passive-aggression (see the worked example). Formality barely moves: all five messages landed between 1.9 and 2.4. The README warns that the base models are near chance on custom labels until fine-tuned.</span></li>
+    <li><b class="warn">Slower</b><span>About 40 to 110 ms per message on this Mac, not the roughly 33 ms the README benchmarks. Still fast enough for live typing. Startup takes 30 to 60 seconds while the model loads.</span></li>
+    <li><b class="ok">Seen working</b><span>In a browser, against real Laya: a polite 1,233-character career question came back neutral 53%, fight risk 6%, formality 2.8, with Copy &amp; Send turned green. An angry message filled the thermometer to 71% and showed the “sleep on it” banner.</span></li>
+    <li><b class="warn">Flaw found</b><span>If a request fails (for example the server restarts mid-typing), the page shows the error but leaves the old gauges on screen, so they look current when they are not. The page should grey them out or clear them.</span></li>
+  </ul>
+</section>
+
+<section>
+  <h2>Try it and go further</h2>
+<pre>cd before-you-send/backend
+source .venv/bin/activate
+uvicorn app:app --port 8140   <span class="c"># wait ~1 min, then open http://localhost:8140</span></pre>
+  <div class="callout"><b>Best next step:</b> fine-tune Laya on a politeness or emotion dataset using the notebook in its repo. That is the fix for both the passive-aggression misses and the flat formality slider, and it uses the same code path, so nothing else changes.</div>
+</section>
+
+<footer>Numbers on this page come from the app running with real Laya v0.3.4 on 2026-09-21. Model details are from the Laya README (Convai Innovations, Apache 2.0).</footer>
+</div>

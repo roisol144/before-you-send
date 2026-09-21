@@ -1,0 +1,28 @@
+<svg viewBox="-16 -16 792 202" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Router sends English text to laya ModernBERT-large and other languages to laya-multilingual mmBERT-base"><style>
+text{font-family:Helvetica,Arial,sans-serif;fill:#14202B}
+.mono{font-family:Menlo,Consolas,monospace}
+.dim{fill:#54657A}
+.box{fill:#FFFFFF;stroke:#CBD5DE;stroke-width:1.2}
+.lbox{fill:#D6ECEE;stroke:#0F6E78;stroke-width:1.6}
+.zone{fill:none;stroke:#0F6E78;stroke-width:1.4;stroke-dasharray:5 4}
+.arr{stroke:#14202B;stroke-width:1.4;fill:none}
+.arrl{stroke:#0F6E78;stroke-width:1.8;fill:none}
+.tok{fill:#E9EEF2;stroke:#CBD5DE;stroke-width:1}
+.lt{fill:#0A4D55;font-weight:bold}
+</style><defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="#14202B"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="#0F6E78"/></marker></defs><rect x="-16" y="-16" width="792" height="202" rx="10" fill="#F7F9FB"/>
+        <rect class="box" x="0" y="55" width="130" height="60" rx="8"/>
+        <text x="65" y="82" text-anchor="middle" font-size="12" font-weight="600">Your message</text>
+        <text x="65" y="99" text-anchor="middle" font-size="11" class="dim">any language</text>
+        <rect class="lbox" x="200" y="55" width="130" height="60" rx="8"/>
+        <text x="265" y="82" text-anchor="middle" font-size="12" font-weight="600">Router</text>
+        <text x="265" y="99" text-anchor="middle" font-size="11" class="dim">script + language</text>
+        <rect class="box" x="420" y="10" width="340" height="56" rx="8"/>
+        <text x="434" y="33" font-size="12" font-weight="600">laya</text>
+        <text x="434" y="51" font-size="11" class="dim">English · ModernBERT-large · 421M · 512 tokens</text>
+        <rect class="box" x="420" y="104" width="340" height="56" rx="8"/>
+        <text x="434" y="127" font-size="12" font-weight="600">laya-multilingual</text>
+        <text x="434" y="145" font-size="11" class="dim">100+ languages · mmBERT-base · 322M · 1,024 tokens</text>
+        <line class="arr" x1="130" y1="85" x2="198" y2="85" marker-end="url(#a1)"/>
+        <path class="arrl" d="M330 78 L375 78 L375 38 L418 38" marker-end="url(#a2)"/>
+        <path class="arrl" d="M330 92 L375 92 L375 132 L418 132" marker-end="url(#a2)"/>
+      </svg>

@@ -1,0 +1,55 @@
+<svg viewBox="-16 -16 852 300" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="A chat model generates tokens one at a time then needs parsing; Laya answers all three questions in one pass with typed outputs"><style>
+text{font-family:Helvetica,Arial,sans-serif;fill:#14202B}
+.mono{font-family:Menlo,Consolas,monospace}
+.dim{fill:#54657A}
+.box{fill:#FFFFFF;stroke:#CBD5DE;stroke-width:1.2}
+.lbox{fill:#D6ECEE;stroke:#0F6E78;stroke-width:1.6}
+.zone{fill:none;stroke:#0F6E78;stroke-width:1.4;stroke-dasharray:5 4}
+.arr{stroke:#14202B;stroke-width:1.4;fill:none}
+.arrl{stroke:#0F6E78;stroke-width:1.8;fill:none}
+.tok{fill:#E9EEF2;stroke:#CBD5DE;stroke-width:1}
+.lt{fill:#0A4D55;font-weight:bold}
+</style><defs><marker id="a1" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="#14202B"/></marker><marker id="a2" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="7" markerHeight="7" orient="auto-start-reverse"><path d="M0 1 L10 5 L0 9 z" fill="#0F6E78"/></marker></defs><rect x="-16" y="-16" width="852" height="300" rx="10" fill="#F7F9FB"/>
+        <text x="0" y="18" font-size="12" class="mono dim">CHAT MODEL (what we did not use)</text>
+        <rect class="box" x="0" y="30" width="110" height="52" rx="8"/>
+        <text x="55" y="61" text-anchor="middle" font-size="12">message + prompt</text>
+        <g>
+          <rect class="tok" x="150" y="40" width="54" height="32" rx="5"/><text x="177" y="61" text-anchor="middle" font-size="11" class="mono">The</text>
+          <rect class="tok" x="212" y="40" width="54" height="32" rx="5"/><text x="239" y="61" text-anchor="middle" font-size="11" class="mono">tone</text>
+          <rect class="tok" x="274" y="40" width="54" height="32" rx="5"/><text x="301" y="61" text-anchor="middle" font-size="11" class="mono">is</text>
+          <rect class="tok" x="336" y="40" width="72" height="32" rx="5"/><text x="372" y="61" text-anchor="middle" font-size="11" class="mono">rather</text>
+          <text x="432" y="61" font-size="14" class="dim">…</text>
+        </g>
+        <rect class="box" x="470" y="30" width="140" height="52" rx="8"/>
+        <text x="540" y="52" text-anchor="middle" font-size="12">free text</text>
+        <text x="540" y="69" text-anchor="middle" font-size="11" class="dim">parse it, hope it fits</text>
+        <line class="arr" x1="110" y1="56" x2="146" y2="56" marker-end="url(#a1)"/>
+        <line class="arr" x1="418" y1="56" x2="468" y2="56" marker-end="url(#a1)"/>
+        <text x="640" y="52" font-size="12">many passes, one per token</text>
+        <text x="640" y="70" font-size="12" class="dim">can drift or invent labels</text>
+
+        <line x1="0" y1="112" x2="820" y2="112" stroke="#CBD5DE" stroke-dasharray="3 5"/>
+
+        <text x="0" y="140" font-size="12" class="mono lt">LAYA (what we used)</text>
+        <rect class="lbox" x="0" y="164" width="110" height="70" rx="8"/>
+        <text x="55" y="190" text-anchor="middle" font-size="12" font-weight="600">message</text>
+        <text x="55" y="208" text-anchor="middle" font-size="11" class="dim">+ 3 questions</text>
+        <text x="55" y="223" text-anchor="middle" font-size="11" class="dim">together</text>
+        <rect class="lbox" x="165" y="172" width="150" height="54" rx="8"/>
+        <text x="240" y="195" text-anchor="middle" font-size="13" font-weight="600">1 forward pass</text>
+        <text x="240" y="212" text-anchor="middle" font-size="11" class="dim mono">~40–110 ms here</text>
+        <line class="arrl" x1="110" y1="199" x2="163" y2="199" marker-end="url(#a2)"/>
+        <rect class="box" x="400" y="146" width="300" height="30" rx="6"/>
+        <text x="412" y="166" font-size="11" class="mono">choice → “angry” + 5 probabilities</text>
+        <rect class="box" x="400" y="184" width="300" height="30" rx="6"/>
+        <text x="412" y="204" font-size="11" class="mono">score  → 1.91 on the formality scale</text>
+        <rect class="box" x="400" y="222" width="300" height="30" rx="6"/>
+        <text x="412" y="242" font-size="11" class="mono">noul   → 0.71 chance of a fight</text>
+        <line class="arrl" x1="315" y1="199" x2="358" y2="199"/>
+        <line class="arrl" x1="358" y1="161" x2="358" y2="237"/>
+        <line class="arrl" x1="358" y1="161" x2="398" y2="161" marker-end="url(#a2)"/>
+        <line class="arrl" x1="358" y1="199" x2="398" y2="199" marker-end="url(#a2)"/>
+        <line class="arrl" x1="358" y1="237" x2="398" y2="237" marker-end="url(#a2)"/>
+        <text x="720" y="199" font-size="11" class="dim">typed, ready</text>
+        <text x="720" y="214" font-size="11" class="dim">for the UI</text>
+      </svg>
